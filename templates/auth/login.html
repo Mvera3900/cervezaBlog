@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{load static %}
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <h2>Iniciar sesión</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label style="font-family: var(--font-heading); font-weight: bold; display: block;">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div style="color: red; font-size: 0.9rem;">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Ingresar</button>
+    </form>
+
+    <p>¿No tienes una cuenta? 
+        <a href="{% url 'registro' %}">Crear cuenta aquí</a> 
+    </p>
+</div>
+{% endblock %}
